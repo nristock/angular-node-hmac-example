@@ -29,7 +29,7 @@ If the validation was successful the server will generate a session token which 
 
 A new secret to sign any further requests is then generated on the client and on the server.
 ```
-secret = sha512(sha512(temporarySecret):sessionToken)
+secret = sha512(temporarySecret:sessionToken)
 ```
 
 ## Authenticated requests
