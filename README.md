@@ -77,6 +77,8 @@ Run the server
 cd _build && node app.js
 ```
 
+You can now connect to the server: http://localhost:3000
+
 ## Social
 If you have any questions, recommendations or requests simply contact me or [create an issue](https://github.com/Monofraps/angular-node-hmac-example/issues/new)
 
