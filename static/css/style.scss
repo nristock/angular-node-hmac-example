@@ -1,0 +1,83 @@
+$background-color: #fdf6e3;
+$background-highlight: #eee8d5;
+$content-color: #657b83;
+$content-highlight: #b58900;
+
+$blue: #268bd2;
+$violet: #6c71c4;
+$magenta: #d33682;
+
+$green: #859900;
+
+$border-color: #586e75;
+
+$body-padding: 40px;
+$input-padding: 10px;
+
+$input-border-radius: 3px;
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+
+  margin: 0;
+
+  color: $content-color;
+
+  word-wrap: break-word;
+
+  background-color: $background-color;
+}
+
+body {
+  padding: $body-padding;
+}
+
+h1 {
+  color: $content-highlight;
+
+  font-weight: 200;
+}
+
+input, textarea, button {
+  padding: $input-padding;
+
+  border: 1px solid $border-color;
+  border-radius: $input-border-radius;
+
+  &:hover {
+    cursor: pointer;
+
+    box-shadow: 0 0 3px 0 black;
+  }
+}
+
+div.container {
+  width: 700px;
+
+  margin: 0 auto;
+  padding: $body-padding $body-padding $body-padding * 2;
+
+  background-color: $background-highlight;
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
+
+  &:hover {
+    color: $magenta !important;
+  }
+
+  &:visited {
+    color: $violet;
+  }
+}
+
+.right {
+  float: right;
+}
+
+span {
+  color: $green;
+}
