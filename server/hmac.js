@@ -4,6 +4,28 @@ var crypto = require('crypto');
 
 var tokens = [];
 
+// Compares two arbitrary strings in constant time.
+var constantTimeStringCompare = function(lhs, rhs) {
+    if (typeof lhs !== 'string' || typeof lhs !== 'string') {
+        return false;
+    }
+
+    // Make sure the strings have the same length by assigning rhs to lhs. While this will result in a positive result
+    // when comparing, we cannot simply skip the comparison because we would leak timing information otherwise.
+    var mismatch = (lhs.length === lhs.length ? 0 : 1);
+    if (mismatch) {
+        lhs = rhs;
+    }
+
+    for (var i = 0; i < lhs.length; ++i) {
+        var lhsChar = lhs.charCodeAt(i);
+        var rhsChar = rhs.charCodeAt(i);
+        mismatch |= (lhsChar ^ rhsChar);
+    }
+
+    return (mismatch === 0);
+};
+
 // Generates an actual session token
 var generateToken = function (secret, callback) {
     crypto.randomBytes(512, function(err, bytes) {
@@ -143,9 +165,9 @@ var verify = function (req, res, next) {
     debug('HMAC Computed: ' + computedHmac);
 
     // Check if sent and computed signatures match
-    if (sentHmac != computedHmac) {
+    if (!constantTimeStringCompare(sentHmac, computedHmac)) {
         debug('Failed. - HMAC mismatch.');
-        res.json(403, {message: 'Inconsistent request.'})
+        res.json(403, {message: 'Inconsistent request.'});
         return;
     }
 
